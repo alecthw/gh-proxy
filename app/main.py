@@ -15,7 +15,7 @@ from urllib.parse import quote
 # config
 # 分支文件使用jsDelivr镜像的开关，0为关闭，默认关闭
 jsdelivr = 0
-size_limit = 1024 * 1024 * 1024 * 999  # 允许的文件大小，默认999GB，相当于无限制了 https://github.com/hunshcn/gh-proxy/issues/8
+size_limit = 1024 * 1024 * 10  # 允许的文件大小，默认999GB，相当于无限制了 https://github.com/hunshcn/gh-proxy/issues/8
 
 """
   先生效白名单再匹配黑名单，pass_list匹配到的会直接302到jsdelivr而忽略设置
@@ -34,15 +34,12 @@ pass_list = '''
 
 HOST = '127.0.0.1'  # 监听地址，建议监听本地然后由web服务器反代
 PORT = 80  # 监听端口
-ASSET_URL = 'https://hunshcn.github.io/gh-proxy'  # 主页
 
 white_list = [tuple([x.replace(' ', '') for x in i.split('/')]) for i in white_list.split('\n') if i]
 black_list = [tuple([x.replace(' ', '') for x in i.split('/')]) for i in black_list.split('\n') if i]
 pass_list = [tuple([x.replace(' ', '') for x in i.split('/')]) for i in pass_list.split('\n') if i]
 app = Flask(__name__)
 CHUNK_SIZE = 1024 * 10
-index_html = requests.get(ASSET_URL, timeout=10).text
-icon_r = requests.get(ASSET_URL + '/favicon.ico', timeout=10).content
 exp1 = re.compile(r'^(?:https?://)?github\.com/(?P<author>.+?)/(?P<repo>.+?)/(?:releases|archive)/.*$')
 exp2 = re.compile(r'^(?:https?://)?github\.com/(?P<author>.+?)/(?P<repo>.+?)/(?:blob|raw)/.*$')
 exp3 = re.compile(r'^(?:https?://)?github\.com/(?P<author>.+?)/(?P<repo>.+?)/(?:info|git-).*$')
@@ -54,15 +51,7 @@ requests.sessions.default_headers = lambda: CaseInsensitiveDict()
 
 @app.route('/')
 def index():
-    if 'q' in request.args:
-        return redirect('/' + request.args.get('q'))
-    return index_html
-
-
-@app.route('/favicon.ico')
-def icon():
-    return Response(icon_r, content_type='image/vnd.microsoft.icon')
-
+    return redirect('https://www.wegod.cc')
 
 def iter_content(self, chunk_size=1, decode_unicode=False):
     """rewrite requests function, set decode_content with False"""
