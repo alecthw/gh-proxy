@@ -32,7 +32,7 @@ black_list = '''
 pass_list = '''
 '''
 
-HOST = '127.0.0.1'  # 监听地址，建议监听本地然后由web服务器反代
+HOST = '0.0.0.0'  # 监听地址，建议监听本地然后由web服务器反代
 PORT = 80  # 监听端口
 
 white_list = [tuple([x.replace(' ', '') for x in i.split('/')]) for i in white_list.split('\n') if i]
@@ -173,6 +173,9 @@ def proxy(u, allow_redirects=False):
                 headers['Location'] = '/' + _location
             else:
                 return proxy(_location, True)
+
+        if 'Transfer-Encoding' in headers:
+            headers.pop('Transfer-Encoding')
 
         return Response(generate(), headers=headers, status=r.status_code)
     except Exception as e:
