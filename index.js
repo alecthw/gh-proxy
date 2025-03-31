@@ -97,7 +97,8 @@ async function fetchHandler(e) {
         const newUrl = path.replace(/(?<=com\/.+?\/.+?)\/(.+?\/)/, '@$1').replace(/^(?:https?:\/\/)?raw\.(?:githubusercontent|github)\.com/, 'https://cdn.jsdelivr.net/gh')
         return Response.redirect(newUrl, 302)
     } else {
-        return fetch(ASSET_URL + path)
+        // return fetch(ASSET_URL + path)
+        return new Response("blocked", {status: 403})
     }
 }
 
