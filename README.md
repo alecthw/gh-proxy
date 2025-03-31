@@ -10,10 +10,6 @@ github release、archive以及项目文件的加速项目，支持clone，有Clo
 
 演示站为公共服务，如有大规模使用需求请自行部署，演示站有点不堪重负
 
-![imagea272c95887343279.png](https://img.maocdn.cn/img/2021/04/24/imagea272c95887343279.png)
-
-当然也欢迎[捐赠](#捐赠)以支持作者
-
 ## python版本和cf worker版本差异
 
 - python版本支持进行文件大小限制，超过设定返回原地址 [issue #8](https://github.com/hunshcn/gh-proxy/issues/8)
@@ -34,21 +30,21 @@ github release、archive以及项目文件的加速项目，支持clone，有Clo
 
 以下都是合法输入（仅示例，文件不存在）：
 
-- 分支源码：https://github.com/hunshcn/project/archive/master.zip
+- 分支源码：<https://github.com/hunshcn/project/archive/master.zip>
 
-- release源码：https://github.com/hunshcn/project/archive/v0.1.0.tar.gz
+- release源码：<https://github.com/hunshcn/project/archive/v0.1.0.tar.gz>
 
-- release文件：https://github.com/hunshcn/project/releases/download/v0.1.0/example.zip
+- release文件：<https://github.com/hunshcn/project/releases/download/v0.1.0/example.zip>
 
-- 分支文件：https://github.com/hunshcn/project/blob/master/filename
+- 分支文件：<https://github.com/hunshcn/project/blob/master/filename>
 
-- commit文件：https://github.com/hunshcn/project/blob/1111111111111111111111111111/filename
+- commit文件：<https://github.com/hunshcn/project/blob/1111111111111111111111111111/filename>
 
-- gist：https://gist.githubusercontent.com/cielpy/351557e6e465c12986419ac5a4dd2568/raw/cmd.py
+- gist：<https://gist.githubusercontent.com/cielpy/351557e6e465c12986419ac5a4dd2568/raw/cmd.py>
 
 ## cf worker版本部署
 
-首页：https://workers.cloudflare.com
+首页：<https://workers.cloudflare.com>
 
 注册，登陆，`Start building`，取一个子域名，`Create a Worker`。
 
@@ -62,7 +58,7 @@ github release、archive以及项目文件的加速项目，支持clone，有Clo
 
 ### Docker部署
 
-```
+``` bash
 docker run -d --name="gh-proxy-py" \
   -p 0.0.0.0:80:80 \
   --restart=always \
@@ -80,6 +76,7 @@ docker run -d --name="gh-proxy-py" \
 按需求修改`app/main.py`的前几项配置
 
 *注意:* 可能需要在`return Response`前加两行
+
 ```python3
 if 'Transfer-Encoding' in headers:
     headers.pop('Transfer-Encoding')
@@ -99,10 +96,10 @@ python版本默认走服务器（2021.3.27更新）
 
 ## Changelog
 
-* 2020.04.10 增加对`raw.githubusercontent.com`文件的支持
-* 2020.04.09 增加Python版本（使用Flask）
-* 2020.03.23 新增了clone的支持
-* 2020.03.22 初始版本
+- 2020.04.10 增加对`raw.githubusercontent.com`文件的支持
+- 2020.04.09 增加Python版本（使用Flask）
+- 2020.03.23 新增了clone的支持
+- 2020.03.22 初始版本
 
 ## 链接
 
