@@ -51,7 +51,7 @@ requests.sessions.default_headers = lambda: CaseInsensitiveDict()
 
 @app.route('/')
 def index():
-    return redirect('https://www.wegod.cc')
+    return redirect('https://www.uufly.org/')
 
 def iter_content(self, chunk_size=1, decode_unicode=False):
     """rewrite requests function, set decode_content with False"""
